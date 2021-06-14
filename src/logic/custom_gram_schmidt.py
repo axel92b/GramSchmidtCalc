@@ -2,7 +2,7 @@ import numpy as np
 import numpy.linalg
 
 
-class GramSchmidtCalc:
+class CustomGramSchmidt:
     inner_product_matrix: np.ndarray
 
     def __init__(self, inner_product_matrix: np.ndarray) -> None:
@@ -51,9 +51,9 @@ def main():
     matrix = np.array([[0, 3, 4],
                        [1, 0, 1],
                        [1, 1, 3]])
-    gsc = GramSchmidtCalc(np.array([[2, -1, 0], [-1, 2, -1], [0, -1, 2]]))
+    gsc = CustomGramSchmidt(np.array([[2, -1, 0], [-1, 2, -1], [0, -1, 2]]))
     result = gsc.calc(matrix)
-    if not GramSchmidtCalc.is_matrix_linearly_dependent(result):
+    if not CustomGramSchmidt.is_matrix_linearly_dependent(result):
         print("The result is an ortonormal basis for the field")
     print(result)
 

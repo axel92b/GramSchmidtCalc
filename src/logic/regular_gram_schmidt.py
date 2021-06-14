@@ -1,7 +1,8 @@
 import numpy as np
 import numpy.linalg
 
-class GramSchmidtCalc:
+
+class RegularGramSchmidt:
 
     def __projection(self, a: np.array, b: np.array) -> np.array:
         return (np.dot(a, b) / np.dot(b, b)) * b
@@ -15,7 +16,7 @@ class GramSchmidtCalc:
             a[i] = val / vec_normal
 
     def calc(self, a: np.ndarray) -> np.ndarray:
-        if numpy.linalg.matrix_rank(a) != a.shape[0]:
+        if RegularGramSchmidt.is_matrix_linearly_dependent(a):
             raise Exception("Linearly dependant vectors are inside")
         b: np.ndarray = a.copy()[:].astype(numpy.float32)
         for i in range(0, b.shape[0] - 1):
@@ -25,12 +26,16 @@ class GramSchmidtCalc:
         self.__normalize_vec(b[-1])
         return b
 
+    @staticmethod
+    def is_matrix_linearly_dependent(a):
+        return numpy.linalg.matrix_rank(a) != a.shape[0]
+
 
 def main():
-    matrix = np.array([[0,3,4],
-                       [1,0,1],
-                       [1,1,3]])
-    gsc = GramSchmidtCalc()
+    matrix = np.array([[0, 3, 4],
+                       [1, 0, 1],
+                       [1, 1, 3]])
+    gsc = RegularGramSchmidt()
     print(gsc.calc(matrix))
 
 
