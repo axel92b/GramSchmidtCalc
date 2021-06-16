@@ -1,4 +1,4 @@
-from src.logic import utility
+from . import utility
 import src.logic.regular_gram_schmidt as RGSC
 import src.logic.custom_gram_schmidt as CGSC
 
