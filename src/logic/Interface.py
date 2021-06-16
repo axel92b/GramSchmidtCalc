@@ -1,6 +1,6 @@
 from . import utility
-import src.logic.regular_gram_schmidt as RGSC
-import src.logic.custom_gram_schmidt as CGSC
+from . import regular_gram_schmidt as RGSC
+from . import custom_gram_schmidt as CGSC
 
 
 def RegularGramSchmidt():
