@@ -1,6 +1,6 @@
 import numpy as np
 import numpy.linalg
-
+from typing import Optional
 
 class RegularGramSchmidt:
 
@@ -15,9 +15,10 @@ class RegularGramSchmidt:
         for i, val in enumerate(a):
             a[i] = val / vec_normal
 
-    def calc(self, a: np.ndarray) -> np.ndarray:
+    def calc(self, a: np.ndarray) -> Optional[np.ndarray]:
         if RegularGramSchmidt.is_matrix_linearly_dependent(a):
-            raise Exception("Linearly dependant vectors are inside")
+            print("Linearly dependant vectors are inside")
+            return None
         b: np.ndarray = a.copy()[:].astype(numpy.float32)
         for i in range(0, b.shape[0] - 1):
             for j in range(i + 1, b.shape[0]):

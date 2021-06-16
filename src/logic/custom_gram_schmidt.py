@@ -1,6 +1,6 @@
 import numpy as np
 import numpy.linalg
-
+from typing import Optional
 
 class CustomGramSchmidt:
     inner_product_matrix: np.ndarray
@@ -25,9 +25,10 @@ class CustomGramSchmidt:
         for i, val in enumerate(a):
             a[i] = val / vec_normal
 
-    def calc(self, matrix: np.ndarray) -> np.ndarray:
+    def calc(self, matrix: np.ndarray) -> Optional[np.ndarray]:
         if self.is_matrix_linearly_dependent(matrix):
-            raise Exception("Error: Matrix is linearly dependent")
+            print("Error: Matrix is linearly dependent")
+            return None
         res: np.ndarray = matrix.copy()[:].astype(numpy.float32)
         for i in range(0, res.shape[0] - 1):
             for j in range(i + 1, res.shape[0]):
